@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link href="apps1.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <title>Travel Places</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<script type="text/javascript">
+    fetch('state.json')
+        .then(function (response) {
+            return response.json();
+        })
+
+        .then(function (data) {
+            const state = localStorage.getItem('StateName');
+            const stateInfo = state ? data.find(val => val.state === state) : '';
+            const header = '<header class="text-center site-title mb-4">' +
+                ' <h1>Some of the best places to visit in ' + stateInfo?.stateName + '</h1>' +
+                '</header>'
+            document.getElementById('TravelPlaces').innerHTML += header;
+            let imageside = 'left';
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].state === state) {
+
+                    const tempPlaces = imageside === 'left' ? '<div class="card mb-3 text-dark bg-primary bg-opacity-10">' +
+                        '<div class="row g-0">' +
+                        '<div class="col-md-4">' +
+                        ' <img src=' + data[i].imageName + ' class="img-fluid rounded w-100" >' +
+                        '</div>' +
+                        '<div class="col-md-8">' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title">' + data[i].name + ', ' + data[i].stateName + ' </h5>' +
+                        '<p class="card-text">' +
+                        data[i].details + '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
+                        :
+                        '<div class="card mb-3 text-dark bg-success bg-opacity-10">' +
+                        '<div class="row g-0">' +
+                        '<div class="col-md-8">' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title">' + data[i].name + ', ' + data[i].stateName + ' </h5>' +
+                        '<p class="card-text">' +
+                        data[i].details + '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="col-md-4">' +
+                        ' <img src=' + data[i].imageName + ' class="img-fluid rounded w-100">' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
+
+                    imageside = imageside === 'left' ? 'right' : 'left';
+                    document.getElementById("TravelPlaces").innerHTML += tempPlaces;
+                }
+            }
+
+            const footer = '<footer class="text-end mt-5">' +
+                ' <h4>Created By: Mahalakshmi L </h4>' +
+                '</footer>'
+            document.getElementById('TravelPlaces').innerHTML += footer;
+        })
+        .catch(function (err) {
+            console.log('error: ' + err);
+        });
+
+    function backToHome() {
+        window.location = '/Home.html'
+    }
+
+</script>
+
+<body class="p-3 m-0 border-0 bd-example " id="TravelPlaces">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+        <button class="btn btn-primary me-md-2 m-2" type="button" onclick="backToHome()">Back To Home Page</button>
+    </div>
+</body>
+
+</html>

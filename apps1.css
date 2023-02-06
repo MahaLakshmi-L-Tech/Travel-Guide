@@ -1,0 +1,16 @@
+.index-body {
+  background-color: rgba(253, 250, 250, 0.953) !important;
+}
+
+.stateCard:hover {
+  box-shadow: 1px 1px 15px 10px gray;
+}
+
+.site-title {
+  text-shadow: 1px 8px 4px #eadb57;
+}
+.body {
+  background-image: url("background.jpg");
+  /* background-color: #cccccc; */
+  background-size: cover;
+}

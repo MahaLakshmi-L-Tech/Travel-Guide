@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="app1.css" rel="stylesheet" />
+  <link href="apps1.css" rel="stylesheet" />
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet" />
+  <title>A Tourist Guide Places Of India</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<script type="text/javascript">
+  fetch('StateInfo.json')
+    .then(function (response) {
+      return response.json();
+    })
+
+    .then(function (data) {
+      for (let i = 0; i < data.length; i++) {
+        const imagepath = '/images/State-icons/' + data[i] + '.png';
+        const tempState = '<div class="col-sm-2 m-1 p-2">' +
+          '<div class="card rounded-circle stateCard" onclick="stateInfo(&quot;' + data[i] + '&quot;)" >' +
+          '<img src=' + imagepath + ' class="card-img-top"  /> ' +
+          '</div> ' +
+          '</div >'
+        document.getElementById("stateInfo").innerHTML += tempState;
+      }
+
+    })
+    .catch(function (err) {
+      console.log('error: ' + err);
+    });
+
+
+  function stateInfo(state) {
+    localStorage.setItem('StateName', state)
+    window.location = '/TravelPlaces.html'
+  }
+
+</script>
+
+<body class="p-3 index-body m-0 border-0 bd-example ">
+  <!-- Example Code -->
+  <h1 class="text-center site-title "> Welcome to Indian Travel site!</h1>
+  <!-- <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">A Tourist Guide Places Of India</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+
+           <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form> 
+  </div>
+  </div>
+  </nav> -->
+  <div id="carouselExampleSlidesOnly" class="carousel slide mt-3" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active rounded" data-bs-interval="1000">
+        <img src="\images\wc.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100 rounded" width="800"
+          height="400" />
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="/images/redfort.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100 rounded"
+          width="800" height="400" />
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="/images/Jantar_Mantar.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800"
+          height="400" />
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="/images/IndiaGate.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800"
+          height="400" />
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="/images/RajGhat.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800"
+          height="400" />
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="/images/LotusTemple.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800"
+          height="400" />
+      </div>
+    </div>
+    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button> -->
+    <!-- <img src="/images/background.jpg"> -->
+  </div>
+  <div class="row mt-5 ps-5 ms-5 " id='stateInfo'>
+
+  </div>
+
+  <footer class="text-end mt-5">
+    <h4>Created By: Mahalakshmi L </h4>
+  </footer>
+</body>
+
+</html>
